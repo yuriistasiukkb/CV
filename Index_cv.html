@@ -5,44 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV — Стасюк Юрій Ярославович</title>
+
+    <!-- 1. External CSS / Зовнішній файл стилів -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- 2. Internal CSS / Внутрішні стилі -->
+    <style>
+        .internal-demo {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div>
-        <div>
-            <h1>Стасюк Юрій Ярославович</h1>
-            <div>DevOps Engineer (у пошуку можливостей)</div>
-            <ul>
-                <li>📧 yurii.stasiuk.kb.2024@lpnu.ua</li>
-                <li>📱 +380 66 604 14 23</li>
-                <li>📍 Львів, Україна</li>
-            </ul>
-        </div>
+    <div id="main-cv-container">
 
-        <div>
-            <div>
-                <div>
-                    <h2>Навички</h2>
-                    <ul>
-                        <li>Linux / Bash</li>
-                        <li>Docker</li>
-                        <li>Git</li>
-                        <li>CI/CD</li>
-                        <li>Networking</li>
-                        <li>Cloud (AWS / Azure)</li>
-                    </ul>
+        <header class="cv-header" style="text-align: center; margin-bottom: 2rem;">
+            <!-- Avatar Placeholder / Фото -->
+            <div class="avatar-container">
+                <div class="avatar-glass">
+                    <img src="./images/avatar.jpg" alt="Avatar" class="avatar-img">
                 </div>
+            </div>
 
-                <div>
+            <h1 class="name-title">Стасюк Юрій Ярославович</h1>
+            <div class="job-title internal-demo">DevOps Engineer (у пошуку можливостей)</div>
+            <ul class="contact-info">
+                <li><a href="mailto:yurii.stasiuk.kb.2024@lpnu.ua">
+                        <img src="./images/gmail.png" alt="Email" class="contact-icon">
+                        yurii.stasiuk.kb.2024@lpnu.ua
+                    </a></li>
+                <li><a href="tel:+380666041423">
+                        <img src="./images/phone.png" alt="Phone" class="contact-icon">
+                        +380 66 604 14 23
+                    </a></li>
+                <li>
+                    <img src="./images/place.png" alt="Location" class="contact-icon">
+                    Львів, Україна
+                </li>
+            </ul>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="skills-section">
+                    <h2>Навички</h2>
+                    <ul class="skills-list">
+                        <li data-skill="linux">Linux / Bash</li>
+                        <li data-skill="docker">Docker</li>
+                        <li data-skill="git">Git</li>
+                        <li data-skill="cicd">CI/CD</li>
+                        <li data-skill="networking">Networking</li>
+                        <li data-skill="cloud">Cloud (AWS / Azure)</li>
+                    </ul>
+                </section>
+
+                <section class="languages-section">
                     <h2>Мови</h2>
                     <ul>
                         <li>Українська — Рідна</li>
                         <li>Англійська — B2</li>
                     </ul>
-                </div>
+                </section>
 
-                <div>
+                <section class="personal-traits">
                     <h2>Особисті якості</h2>
                     <ul>
                         <li>Пунктуальний</li>
@@ -50,9 +80,9 @@
                         <li>Відповідальний</li>
                         <li>Командний гравець</li>
                     </ul>
-                </div>
+                </section>
 
-                <div>
+                <section class="hobbies-section" id="hobbies">
                     <h2>Хобі</h2>
                     <ul>
                         <li>Астрофотографії</li>
@@ -60,14 +90,14 @@
                         <li>Комп'ютерні ігри</li>
                         <li>Катання на велосипеді</li>
                     </ul>
-                </div>
+                </section>
 
-            </div>
+            </aside>
 
-            <div>
-                <div>
+            <main class="content-area">
+                <section class="about-me box-model-demo">
                     <h2>Про мене</h2>
-                    <div>
+                    <div class="content-block">
                         <p>
                             Сфера IT цікавить мене вже давно. Починав свій шлях із графічного
                             дизайну — працював з растровою та векторною графікою у Adobe Photoshop
@@ -79,37 +109,37 @@
                             у напрямку DevOps.
                         </p>
                     </div>
-                </div>
+                </section>
 
-                <div>
+                <section class="education-section">
                     <h2>Освіта</h2>
-                    <div>
+                    <div class="timeline">
 
-                        <div>
-                            <div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
                                 <h3>Бакалавр — Кібербезпека</h3>
-                                <div>2024 – Теперішній час</div>
+                                <div class="date">2024 – Теперішній час</div>
                             </div>
-                            <div>Національний університет «Львівська політехніка»</div>
-                            <div>
+                            <div class="institution">Національний університет «Львівська політехніка»</div>
+                            <div class="details">
                                 <p>Спеціальність: Кібербезпека</p>
                             </div>
                         </div>
 
                     </div>
-                </div>
+                </section>
 
-                <div>
+                <section class="courses-section">
                     <h2>Курси та сертифікації</h2>
-                    <div>
+                    <div class="timeline">
 
-                        <div>
-                            <div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
                                 <h3>DevOps Engineering</h3>
-                                <div>2024 – Теперішній час</div>
+                                <div class="date">2026 – Теперішній час</div>
                             </div>
-                            <div>SoftServe (сертифікаційна програма)</div>
-                            <div>
+                            <div class="institution">SoftServe (сертифікаційна програма)</div>
+                            <div class="details">
                                 <ul>
                                     <li>Linux-адміністрування та Bash-скрипти</li>
                                     <li>Контейнеризація (Docker)</li>
@@ -120,12 +150,12 @@
                         </div>
 
                     </div>
-                </div>
+                </section>
 
 
-                <div>
+                <section class="professional-goal">
                     <h2>Професійна мета</h2>
-                    <div>
+                    <div class="content-block">
                         <p>
                             Отримати позицію Junior DevOps Engineer, де зможу застосувати
                             набуті знання з адміністрування, автоматизації та хмарних
@@ -133,15 +163,15 @@
                             досвідчених спеціалістів.
                         </p>
                     </div>
-                </div>
+                </section>
 
-            </div>
+            </main>
 
         </div>
 
-        <div>
-            <p>&copy; 2025 — Стасюк Юрій Ярославович</p>
-        </div>
+        <footer class="cv-footer">
+            <p>&copy; 2026 — Стасюк Юрій Ярославович</p>
+        </footer>
 
     </div>
 
