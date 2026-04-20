@@ -53,7 +53,6 @@ h2,
 h3 {
     margin-bottom: 0.5rem;
     color: #008eb0;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);
 }
 
 a {
@@ -369,7 +368,9 @@ ul {
     border-left-color: #48cae4;
 }
 
-.content-area section {
+.content-area section,
+.comments-section {
+    grid-column: 1 / -1;
     margin-bottom: 2.5rem;
     padding: 2.5rem;
     background: rgba(255, 255, 255, 0.35);
@@ -383,7 +384,8 @@ ul {
     overflow: hidden;
 }
 
-.content-area section::before {
+.content-area section::before,
+.comments-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -394,14 +396,16 @@ ul {
     border-radius: 50%;
 }
 
-.content-area section:hover {
+.content-area section:hover,
+.comments-section:hover {
     transform: translateY(-5px);
     box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.9), 0 15px 40px rgba(0, 168, 255, 0.15);
     background: rgba(255, 255, 255, 0.5);
     border-color: rgba(255, 255, 255, 0.9);
 }
 
-.content-area h2 {
+.content-area h2,
+.comments-section h2 {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -410,7 +414,8 @@ ul {
     margin-bottom: 1.8rem;
 }
 
-.content-area h2::before {
+.content-area h2::before,
+.comments-section h2::before {
     content: '';
     display: block;
     width: 35px;
@@ -421,7 +426,8 @@ ul {
     transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.content-area section:hover h2::before {
+.content-area section:hover h2::before,
+.comments-section:hover h2::before {
     width: 70px;
     background: linear-gradient(90deg, #0097e6, #44bd32);
     box-shadow: 0 0 15px rgba(0, 168, 255, 0.8);
@@ -625,4 +631,307 @@ ul {
         width: 16px;
         height: 16px;
     }
+}
+
+/* Стилі для секції коментарів (Завдання 2) */
+.comments-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Додано, щоб коментарі гарно ставали поруч */
+    gap: 1.2rem;
+}
+
+.comment-card {
+    flex: 1 1 calc(50% - 1.2rem);
+    /* дві картки в ряд */
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-left: 4px solid #008eb0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 15px rgba(0, 142, 176, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+    border-left-color: #4cd137;
+}
+
+.comment-name {
+    font-weight: 700;
+    color: #005f73;
+    font-size: 1.05rem;
+    margin-bottom: 0.1rem;
+    text-transform: capitalize;
+}
+
+.comment-email {
+    font-size: 0.8rem;
+    color: #008eb0;
+    margin-bottom: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.comment-body {
+    font-size: 0.95rem;
+    color: #1a365d;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+.loading-text {
+    text-align: center;
+    color: #008eb0;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.904);
+    border: 1px solid #fff;
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform: translateY(-50px);
+    transition: .4s;
+    text-align: center;
+    color: #008eb0;
+}
+
+.modal-overlay.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #e74c3c;
+    cursor: pointer;
+    transition: .3s;
+    line-height: 1;
+}
+
+.close-modal-btn:hover {
+    transform: scale(1.1);
+}
+
+.modal-content h2,
+.modal-content p {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #005f73;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.932);
+    outline: none;
+    transition: .3s;
+    font-family: inherit;
+    color: #1a365d;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 142, 176, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #008eb0, #00d2ff);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 142, 176, 0.4);
+}
+
+
+.theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 100;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-theme {
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #121f2d);
+    background-size: 400% 400%;
+    color: #e2e8f0;
+}
+
+body.dark-theme .cv-header,
+body.dark-theme .cv-footer,
+body.dark-theme #main-cv-container,
+body.dark-theme .sidebar,
+body.dark-theme .content-area section,
+body.dark-theme .comments-section,
+body.dark-theme .comment-card {
+    background: rgba(15, 32, 39, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme .institution {
+    color: #64ffda;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .name-title {
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+}
+
+body.dark-theme a {
+    color: #64ffda;
+}
+
+body.dark-theme a:hover {
+    color: #8affe3;
+}
+
+body.dark-theme .skills-list li,
+body.dark-theme .languages-section li,
+body.dark-theme .personal-traits li,
+body.dark-theme .hobbies-section li,
+body.dark-theme .contact-info li,
+body.dark-theme .date {
+    background: rgba(32, 58, 67, 0.6);
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .contact-info li {
+    background: rgba(32, 58, 67, 0.6);
+}
+
+body.dark-theme .comment-name {
+    color: #64ffda;
+}
+
+body.dark-theme .comment-body {
+    color: #cbd5e1;
+}
+
+body.dark-theme .comment-email {
+    background: rgba(32, 58, 67, 0.8);
+    color: #cbd5e1;
+}
+
+body.dark-theme .modal-content {
+    background: rgba(15, 32, 39, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .form-group label {
+    color: #64ffda;
+}
+
+body.dark-theme .form-group input,
+body.dark-theme .form-group textarea {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme .form-group input:focus,
+body.dark-theme .form-group textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #64ffda;
+}
+
+body.dark-theme .close-modal-btn {
+    color: #64ffda;
+}
+
+body.dark-theme .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.1);
 }

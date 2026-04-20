@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV — Стасюк Юрій Ярославович</title>
 
-    <!-- 1. External CSS / Зовнішній файл стилів -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- 2. Internal CSS / Внутрішні стилі -->
     <style>
         .internal-demo {
             font-style: italic;
@@ -24,8 +22,8 @@
 
     <div id="main-cv-container">
 
-        <header class="cv-header" style="text-align: center; margin-bottom: 2rem;">
-            <!-- Avatar Placeholder / Фото -->
+        <header class="cv-header" style="text-align: center; margin-bottom: 2rem; position: relative;">
+            <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
             <div class="avatar-container">
                 <div class="avatar-glass">
                     <img src="./images/avatar.jpg" alt="Avatar" class="avatar-img">
@@ -167,14 +165,56 @@
 
             </main>
 
+            <section class="comments-section">
+                <h2>Відгуки попередніх роботодавців</h2>
+                <div id="comments-container" class="comments-container">
+                    <!-- Коментарі будуть динамічно додані сюди -->
+                    <p class="loading-text">Завантаження відгуків...</p>
+                </div>
+            </section>
+
         </div>
 
         <footer class="cv-footer">
             <p>&copy; 2026 — Стасюк Юрій Ярославович</p>
+            <p id="footer-info"></p>
         </footer>
 
     </div>
 
+    <div id="feedback-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-modal">&times;</button>
+            <h2>Зв'язатися зі мною</h2>
+            <p>Залиште свої дані і я зв'яжусь з вами!</p>
+
+            <form id="feedback-form" action="https://formspree.io/f/mdapyqdd" method="POST">
+                <div class="form-group">
+                    <label for="name">Ім'я:</label>
+                    <input type="text" id="name" name="name" required placeholder="Ваше ім'я">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Ваш Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефону:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+380...">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Повідомлення:</label>
+                    <textarea id="message" name="message" rows="4" required
+                        placeholder="Напишіть те, що вас цікавить..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Відправити</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
